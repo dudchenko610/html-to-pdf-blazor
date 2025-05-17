@@ -1,0 +1,264 @@
+@using BlazorComponentHeap.HtmlEditor.Models
+@using BlazorComponentHeap.HtmlEditor.Components.Toolbar.LinkInsert
+
+<div class="@($"html-text-editor-toolbar noselectable-text {(ViewMode == EditorViewMode.Preview ? "preview" : "source")} {(!Enabled ? "disabled" : "")}")">
+
+    @foreach (var toolModel in ToolbarKeys)
+    {
+        switch (toolModel.Key)
+        {
+            case "undo":
+                <div class="@($"control-item inner-tool back {(IsActive(ControlButton.Undo) ? "" : "disabled")}")"
+                     @onclick="() => OnButtonClickedAsync(ControlButton.Undo)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "redo":
+                <div class="@($"control-item inner-tool forward {(IsActive(ControlButton.Redo) ? "" : "disabled")}")"
+                     @onclick="() => OnButtonClickedAsync(ControlButton.Redo)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "separator":
+                <div class="control-item inner-tool separator"></div>
+                break;
+            case "bold":
+                <div class="@($"control-item inner-tool bold {(IsActive(ControlButton.Bold) ? "active" : "")}")"
+                     @onclick="() => OnButtonClickedAsync(ControlButton.Bold)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "italic":
+                <div class="@($"control-item inner-tool italic {(IsActive(ControlButton.Italic) ? "active" : "")}")"
+                     @onclick="() => OnButtonClickedAsync(ControlButton.Italic)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "underline":
+                <div
+                    class="@($"control-item inner-tool underline {(IsActive(ControlButton.Underline) ? "active" : "")}")"
+                    @onclick="() => OnButtonClickedAsync(ControlButton.Underline)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "fontsize":
+                <div class="control-item inner-tool font-size-container">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <div class="control-cnt">
+                        <BCHSelect TItem="string"
+                                   Height="200"
+                                   ItemHeight="30"
+                                   Options="@EditorConstants.FontSizes"
+                                   DefaultValue="@(EditorConstants.FontSizes[0])"
+                                   Filtering="false"
+                                   FilterByPredicate="x => x"
+                                   SelectedChanged="OnFontSizeSelectedAsync"/>
+                    </div>
+                </div>
+                break;
+            case "headings":
+                <div class="control-item inner-tool paragraph-container">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <div class="control-cnt">
+                        <BCHSelect TItem="string"
+                                   Height="200"
+                                   ItemHeight="30"
+                                   Options="@EditorConstants.Paragraphs"
+                                   DefaultValue="@(EditorConstants.Paragraphs[0])"
+                                   Filtering="false"
+                                   FilterByPredicate="x => x"
+                                   SelectedChanged="OnParagraphSelectedAsync"/>
+                    </div>
+                </div>
+                break;
+            case "align":
+                <div class="control-item inner-tool align-container">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <div class="control-cnt">
+                        <BCHSelect TItem="string"
+                                   Height="200"
+                                   ItemHeight="30"
+                                   Options="@EditorConstants.AlignCommands"
+                                   DefaultValue="@(EditorConstants.AlignCommands[0])"
+                                   Filtering="false"
+                                   FilterByPredicate="x => x"
+                                   SelectedChanged="OnAlignTextSelectedAsync">
+                            <OptionTemplate Context="action">
+                                <div class="action-cnt"
+                                     style="@($"background: url(_content/EdenBlazor.Components.Common/img/html-text-editor/toolbar/align-text/{action}.svg) center no-repeat;")">
+                                </div>
+                            </OptionTemplate>
+                        </BCHSelect>
+                    </div>
+                </div>
+                break;
+            case "colortext":
+                <div class="control-item inner-tool color-picker-container">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <div class="control-cnt">
+                        <BCHSelect TItem="string"
+                                   Height="200"
+                                   ItemHeight="27"
+                                   Options="@EditorConstants.Colors"
+                                   Filtering="false"
+                                   FilterByPredicate="x => x"
+                                   SelectedChanged="(color) => OnColorTextPickAsync(color)">
+                            <OptionTemplate Context="action">
+                                <div class="color-item" style="@($"background: {action};")"></div>
+                            </OptionTemplate>
+                        </BCHSelect>
+                    </div>
+                </div>
+                break;
+            case "table":
+                <div class="control-item inner-tool table-container">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <div class="control-cnt">
+                        <BCHSelect TItem="string"
+                                   Height="200"
+                                         ItemHeight="23"
+                                         Options="@EditorConstants.Colors"
+                                         Filtering="false"
+                                         FilterByPredicate="x => x"
+                                         SelectedChanged="OnTableSelectedAsync">
+                            <OptionTemplate Context="action">
+                                <div class="table-item"></div>
+                            </OptionTemplate>
+                        </BCHSelect>
+                    </div>
+                </div>
+                break;
+            case "orderedlist":
+                <div
+                    class="@($"control-item inner-tool ordered-list {(IsActive(ControlButton.OrderedList) ? "active" : "")}")"
+                    @onclick="async() => { await OnButtonClickedAsync(ControlButton.OrderedList); }">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "unorderedlist":
+                <div
+                    class="@($"control-item inner-tool unordered-list {(IsActive(ControlButton.UnorderedList) ? "active" : "")}")"
+                    @onclick="async() => { await OnButtonClickedAsync(ControlButton.UnorderedList); }">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "indent":
+                <div class="control-item inner-tool indent" @onclick="() => OnButtonClickedAsync(ControlButton.Indent)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "outdent":
+                <div class="control-item inner-tool outdent"
+                     @onclick="() => OnButtonClickedAsync(ControlButton.Outdent)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "insertimage":
+                <div class="control-item inner-tool image-link">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <LinkInsertComponent IsImage="true"
+                                         OnOkayClicked="(imageUrl) => OnButtonClickedAsync(ControlButton.InsertImage, imageUrl)"/>
+                </div>
+                break;
+            case "insertlink":
+                <div class="control-item inner-tool insert-link">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                    <LinkInsertComponent IsImage="false"
+                                         OnOkayClicked="(linkUrl) => OnButtonClickedAsync(ControlButton.InsertLink, linkUrl)"/>
+                </div>
+                break;
+            case "removelink":
+                <div
+                    class="@($"control-item inner-tool remove-link {(IsActive(ControlButton.RemoveLink) ? "active" : "")}")"
+                    @onclick='() => OnButtonClickedAsync(ControlButton.RemoveLink, "a")'>
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            case "mode":
+                <div class="control-item inner-tool mode"
+                     @onclick="() => OnButtonClickedAsync(ViewMode == EditorViewMode.Preview ? ControlButton.Source : ControlButton.Preview)">
+                    @if (!string.IsNullOrEmpty(toolModel.Hint))
+                    {
+                        <div class="hint">@toolModel.Hint</div>
+                    }
+                </div>
+                break;
+            @* case "insert1image": *@
+            @*     <div class="control-item inner-tool insert-1-image" @onclick="() => OnImagesInsertAsync(ControlButton.Insert1Image)"> *@
+            @*         @if (!string.IsNullOrEmpty(toolModel.Hint)) *@
+            @*         { *@
+            @*             <div class="hint">@toolModel.Hint</div> *@
+            @*         } *@
+            @*     </div> *@
+            @*     break; *@
+
+            default:
+            {
+                if (ToolbarItems.TryGetValue(toolModel.Key, out var fragment))
+                {
+                    <div class="control-item">
+                        @if (!string.IsNullOrEmpty(toolModel.Hint))
+                        {
+                            <div class="hint">@toolModel.Hint</div>
+                        }
+                        @fragment
+                    </div>
+                }
+
+                break;
+            }
+        }
+    }
+
+</div>

@@ -1,0 +1,33 @@
+<div class="floating-toolbar-container">
+    <div class="control-item replace" @onclick="OnImageReplaceClickedAsync"></div>
+
+    <div class="control-item align-container">
+        <div class="control-cnt">
+            <BCHSelect TItem="string"
+                       Height="200"
+                       ItemHeight="30"
+                       Options="@EditorConstants.AlignCommands"
+                       DefaultValue="@(EditorConstants.AlignCommands[0])"
+                       Filtering="false"
+                       FilterByPredicate="x => x"
+                       SelectedChanged="OnAlignTextSelectedAsync">
+                <OptionTemplate Context="action">
+                    <div class="action-cnt"
+                         style="@($"background: url(_content/BlazorComponentHeap.HtmlEditor/imgs/toolbar/align-text/{action}.svg) center no-repeat;")">
+                    </div>
+                </OptionTemplate>
+            </BCHSelect>
+        </div>
+    </div>
+</div>
+
+<style>
+    .select-content-modal-wrapper.html-editor-font-size {
+        transform: translateY(29px);
+    }
+
+    .select-content-modal-wrapper.html-editor-font-size > .content {
+        border: 1px solid #e8eaed;
+        filter: none;
+    }
+</style>

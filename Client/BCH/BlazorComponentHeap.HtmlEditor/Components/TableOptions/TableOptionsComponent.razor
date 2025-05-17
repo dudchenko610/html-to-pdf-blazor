@@ -1,0 +1,31 @@
+<div class="floating-toolbar-container">
+    <div class="item insert-row-above" @onclick="() => OnInsertRowAbove.InvokeAsync()">
+        <div class="icon"></div>
+        <div class="text">Insert Row Above</div>
+    </div>
+
+    <div class="item insert-row-below" @onclick="() => OnInsertRowBelow.InvokeAsync()">
+        <div class="icon"></div>
+        <div class="text">Insert Row Below</div>
+    </div>
+
+    <div class="item remove-row" @onclick="() => OnRemoveSelectedRow.InvokeAsync()">
+        <div class="icon"></div>
+        <div class="text">Remove Row</div>
+    </div>
+
+    <div class="item insert-column-to-the-left" @onclick="() => OnInsertColumnToTheLeft.InvokeAsync()">
+        <div class="icon"></div>
+        <div class="text">Insert Column to the Left</div>
+    </div>
+    
+    <div class="item insert-column-to-the-left" @onclick="() => OnInsertColumnToTheRight.InvokeAsync()">
+        <div class="icon"></div>
+        <div class="text">Insert Column to the Right</div>
+    </div>
+
+    <div class="item remove-column" @onclick="() => OnRemoveSelectedColumn.InvokeAsync()">
+        <div class="icon"></div>
+        <div class="text">Remove Column</div>
+    </div>
+</div>

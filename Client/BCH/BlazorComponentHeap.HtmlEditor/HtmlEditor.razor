@@ -1,0 +1,142 @@
+@using BlazorComponentHeap.HtmlEditor.Components.Toolbar
+@using BlazorComponentHeap.HtmlEditor.Models
+@using BlazorComponentHeap.HtmlEditor.Components.FloatingToolbar
+@using BlazorComponentHeap.HtmlEditor.Components.ImageOptions
+@using BlazorComponentHeap.HtmlEditor.Components.TableOptions
+
+<CascadingValue IsFixed="true" Name="HtmlTextEditorComponent" Value="this">@ToolbarItemsTemplate</CascadingValue>
+
+<div class="html-text-editor-container">
+
+    @if (ShowToolbar)
+    {
+        <ToolbarComponent CommandsActivated="_commandButtonsBitMask"
+                          ViewMode="ViewMode"
+                          ToolbarKeys="ToolbarKeys"
+                          ColorText="@_colorText"
+                          Paragraph="@_paragraph"
+                          Enabled="@Enabled"
+                          OnButtonClick="OnButtonClickedAsync"
+                          ToolbarItems="_toolbarItems"/>
+    }
+
+    <div class="editor-content @($"{(_viewMode == EditorViewMode.Preview ? "preview" : "source")}")">
+
+        <iframe id="@_previewId"
+                class="preview-container noselectable-text @(_rectHandleDragged || !Enabled ? "disabled" : "")"
+                srcdoc='@_htmlTemplate'
+                @onload="OnIFrameLoadedAsync">
+        </iframe>
+
+        <div class="source-container">
+            <textarea id="@_sourceId"></textarea>
+        </div>
+
+        @if (_showImageRect)
+        {
+            <div class="image-border"
+                 style="@($"left: {_imageRectPos.X.ToString(_nF)}px; top: {_imageRectPos.Y.ToString(_nF)}px;" + $"width: {(_imageRectSize.X / ScaleFactor).ToString(_nF)}px; height: {(_imageRectSize.Y / ScaleFactor).ToString(_nF)}px;")">
+                @*             <div class="corner c-1"></div>
+            <div class="corner c-2"></div>*@
+                <div @onmousedown="OnMouseDownAsync"
+                     class="corner c-3 @(_rectHandleDragged ? "disabled" : "")">
+                </div>
+                @*<div class="corner c-4"></div>*@
+            </div>
+        }
+
+    </div>
+</div>
+
+<BCHModal @bind-Show="_showFloatingToolbar"
+          CssClass="floating-toolbar"
+          Width="unset"
+          Height="40px"
+          ZIndex="20000"
+          X="@($"{_floatingToolbarPos.X.ToString(_nF)}px")"
+          Y="@($"{_floatingToolbarPos.Y.ToString(_nF)}px")">
+    <FloatingToolbarComponent CommandsActivated="_commandButtonsBitMask"
+                              Paragraph="@_paragraph"
+                              OnButtonClick="OnButtonClickedAsync"/>
+</BCHModal>
+
+<BCHModal @bind-Show="_showImageOptions"
+          CssClass="image-options"
+          Width="unset"
+          Height="40px"
+          ZIndex="20000"
+          X="@($"{_imageOptionsPos.X.ToString(_nF)}px")"
+          Y="@($"{_imageOptionsPos.Y.ToString(_nF)}px")">
+    <ImageOptionsComponent OnImageReplaceClicked="OnReplaceImageClickedAsync"
+                           CommandsActivated="_commandButtonsBitMask"
+                           OnButtonClick="OnButtonClickedAsync"/>
+</BCHModal>
+
+<BCHModal @bind-Show="_showTableOptions"
+          CssClass="table-options"
+          Width="unset"
+          Height="182px"
+          ZIndex="20000"
+          X="@($"{_tableOptionsPos.X.ToString(_nF)}px")"
+          Y="@($"{_tableOptionsPos.Y.ToString(_nF)}px")">
+    <TableOptionsComponent OnInsertRowAbove="InsertRowAboveTheSelectionAsync"
+                           OnInsertRowBelow="InsertRowBelowTheSelectionAsync"
+                           OnRemoveSelectedRow="RemoveSelectedRowAsync"
+                           OnInsertColumnToTheLeft="OnInsertColumnToTheLeftAsync"
+                           OnInsertColumnToTheRight="OnInsertColumnToTheRightAsync"
+                           OnRemoveSelectedColumn="RemoveSelectedColumnAsync"/>
+</BCHModal>
+
+<style>
+
+    .modal-content-container.image-options,
+    .modal-content-container.table-options,
+    .modal-content-container.floating-toolbar {
+        z-index: 99999;
+    }
+
+    .html-text-editor-container .CodeMirror {
+        height: 100% !important;
+    }
+
+    .html-text-editor-container .CodeMirror-sizer {
+        margin-left: 38px !important;
+    }
+
+    .html-text-editor-container .CodeMirror-gutters {
+        left: 0 !important;
+    }
+
+    .html-text-editor-container .CodeMirror-gutter.CodeMirror-linenumbers {
+        width: 28px !important;
+    }
+
+    .html-text-editor-container .CodeMirror-linenumber.CodeMirror-gutter-elt {
+        width: 21px !important;
+    }
+
+    .html-text-editor-container .CodeMirror-vscrollbar::-webkit-scrollbar {
+        width: 18px;
+    }
+
+    .html-text-editor-container .CodeMirror-vscrollbar::-webkit-scrollbar-track {
+        display: flex;
+        justify-content: center;
+        border-left: 1px solid #E8EAED;
+    }
+
+    .html-text-editor-container .CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
+        background: #B3BBC5;
+        border: 6px solid transparent;
+        border-radius: 9px;
+        background-clip: content-box;
+    }
+
+    .html-text-editor-container .CodeMirror-vscrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        border: 6px solid transparent;
+        border-radius: 9px;
+        background-clip: content-box;
+    }
+
+</style>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BlazorComponentHeap.Modal\BlazorComponentHeap.Modal.csproj" />
+      <ProjectReference Include="..\BlazorComponentHeap.Select\BlazorComponentHeap.Select.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\libs\codemirror\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\imgs\toolbar\table-options\insert-left-column-icon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\imgs\toolbar\table-options\insert-right-column-icon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\imgs\toolbar\table-options\insert-row-above-icon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\imgs\toolbar\table-options\insert-row-below-icon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\imgs\toolbar\table-options\remove-row-icon.png" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,69 @@
+.page-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    background: #f9f7f5;
+}
+
+.page-container > .inner-container {
+    flex-grow: 1;
+    padding: 15px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+
+    border: 1px solid #e2dfdb;
+    /*box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;*/
+    background-color: #f2ede8;
+}
+
+.page-container > .inner-container > .html-editor-container {
+    width: 100%;
+    height: 100%;
+    padding-block: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-container > .inner-container > .html-editor-container > .editor {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.page-container > .inner-container > .html-editor-container > .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-inline: 15px;
+}
+
+.page-container > .inner-container > .html-editor-container > .form > button {
+    cursor: pointer;
+}
+
+button {
+    background: #5DB276;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 10px 24px;
+    border: none;
+}

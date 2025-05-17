@@ -1,0 +1,215 @@
+.floating-toolbar-container {
+    background: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid #E8EAED;
+    filter: drop-shadow(2px 4px 6px rgba(3, 2, 41, 0.2));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-toolbar-container > .control-item {
+    vertical-align: top;
+    width: 35px;
+    height: 35px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: white;
+    transition: background ease 0.1s;
+}
+
+.floating-toolbar-container > .control-item:hover {
+    background-color: #F0F2F4 !important;
+}
+
+.floating-toolbar-container > .control-item.active,
+.floating-toolbar-container > .control-item:active {
+    background-color: #E5EFFF !important;
+}
+
+.floating-toolbar-container > .control-item.separator {
+    width: 1px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 1.75%, #CCCCCC 41.45%, #CCCCCC 58.43%, rgba(255, 255, 255, 0.0001) 98.33%);
+}
+
+.floating-toolbar-container > .control-item.back {
+    background: url(imgs/toolbar/back-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.forward {
+    background: url(imgs/toolbar/forward-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.bold {
+    background: url(imgs/toolbar/bold-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.italic {
+    background: url(imgs/toolbar/italic-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.underline {
+    background: url(imgs/toolbar/underline-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.ordered-list {
+    background: url(imgs/toolbar/ordered-list-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.unordered-list {
+    background: url(imgs/toolbar/unordered-list-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.indent {
+    background: url(imgs/toolbar/indent-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.outdent {
+    background: url(imgs/toolbar/outdent-icon.svg) center no-repeat;
+}
+
+.floating-toolbar-container > .control-item.remove-link {
+    background: url(imgs/toolbar/remove-link-icon.svg) center no-repeat;
+    background-size: 56%;
+}
+
+.html-text-editor-toolbar.preview > .control-item.mode {
+    background: url(imgs/toolbar/source-icon.svg) center no-repeat;
+    background-size: 54%;
+}
+
+.html-text-editor-toolbar.source > .control-item.mode {
+    background: url(imgs/toolbar/preview-icon.svg) center no-repeat;
+    background-size: 66%;
+}
+
+
+.floating-toolbar-container > .control-item.disabled,
+.html-text-editor-toolbar.source > .control-item {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.floating-toolbar-container > .control-item.mode {
+    pointer-events: all;
+}
+
+.floating-toolbar-container > .control-item.table-container {
+    width: 35px;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container,
+.floating-toolbar-container > .control-item.align-container {
+    width: 50px;
+}
+
+.floating-toolbar-container > .control-item.font-size-container,
+.floating-toolbar-container > .control-item.paragraph-container {
+    width: auto;
+}
+
+.floating-toolbar-container > .control-item.font-size-container:hover,
+.floating-toolbar-container > .control-item.paragraph-container:hover,
+.floating-toolbar-container > .control-item.color-picker-container:hover,
+.floating-toolbar-container > .control-item.align-container:hover {
+    background-color: #00000000 !important;
+}
+
+.floating-toolbar-container > .control-item.font-size-container > .control-cnt,
+.floating-toolbar-container > .control-item.paragraph-container > .control-cnt,
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt,
+.floating-toolbar-container > .control-item.table-container > .control-cnt,
+.floating-toolbar-container > .control-item.align-container > .control-cnt {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-toolbar-container > .control-item.align-container > .control-cnt .header-icon,
+.floating-toolbar-container > .control-item.align-container > .control-cnt .action-cnt {
+    width: 30px;
+    height: 100%;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .arrow-container,
+.floating-toolbar-container > .control-item.align-container > .control-cnt .arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .arrow-container .arrow,
+.floating-toolbar-container > .control-item.align-container > .control-cnt .arrow-container .arrow {
+    transition: all 0.2s ease;
+    background: url(imgs/toolbar/align-text/switch-icon.svg) center no-repeat;
+    width: 12px;
+    height: 12px;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-header-cnt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.floating-toolbar-container > .control-item.table-container > .control-cnt .color-header-cnt {
+    background: url(imgs/toolbar/table-icon.svg) center no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: 65%;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-header-cnt > .letter {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.342857px;
+    color: #333842;
+    text-align: center;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-header-cnt > .color {
+    width: 12px;
+    height: 3px;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-item {
+    width: 100%;
+    height: 100%;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-item:hover {
+    box-shadow: 2px 2px 7px 2px rgb(222 226 230 / 30%);
+    border: 0.5px solid white;
+}
+
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-item {
+    width: 100%;
+    height: 100%;
+}
+
+.floating-toolbar-container > .control-item.color-picker-container > .control-cnt .color-item:hover {
+    box-shadow: 2px 2px 7px 2px rgb(222 226 230 / 30%);
+    border: 0.5px solid white;
+}
+
+.floating-toolbar-container > .control-item.table-container > .control-cnt .table-item {
+    width: 23px;
+    height: 23px;
+    border: 1px solid #dee2e6;
+    background: white;
+}
+
+.floating-toolbar-container > .control-item.table-container > .control-cnt .table-item:hover {
+    border: 1px solid #0d6efd;
+    background: #e7f1ff;
+}

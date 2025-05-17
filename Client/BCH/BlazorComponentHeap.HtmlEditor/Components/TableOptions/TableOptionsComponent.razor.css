@@ -1,0 +1,59 @@
+.floating-toolbar-container {
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #E8EAED;
+    filter: drop-shadow(2px 4px 6px rgba(3, 2, 41, 0.2));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.floating-toolbar-container > .item {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 2px;
+}
+
+.floating-toolbar-container > .item:hover {
+    background: #00000010;
+}
+
+.floating-toolbar-container > .item > .icon {
+    width: 32px;
+    height: 32px;
+    background-size: 68% !important;
+}
+
+.floating-toolbar-container > .item > .text {
+    height: fit-content;
+    padding-right: 18px;
+    font-size: 12px;
+}
+
+.floating-toolbar-container > .item.insert-row-above > .icon {
+    background: url(imgs/table-options/insert-row-above-icon.png) center no-repeat;
+    background-position-x: 2px;
+}
+
+.floating-toolbar-container > .item.insert-row-below > .icon {
+    background: url(imgs/table-options/insert-row-below-icon.png) center no-repeat;
+    background-position-x: 2px;
+}
+
+.floating-toolbar-container > .item.remove-row > .icon,
+.floating-toolbar-container > .item.remove-column > .icon {
+    background: url(imgs/table-options/remove-row-icon.png) center no-repeat;
+    background-position-x: 4px;
+}
+
+.floating-toolbar-container > .item.insert-column-to-the-left > .icon {
+    background: url(imgs/table-options/insert-left-column-icon.png) center no-repeat;
+    background-position-x: 4px;
+}
+
+.floating-toolbar-container > .item.insert-column-to-the-right > .icon {
+    background: url(imgs/table-options/insert-right-column-icon.png) center no-repeat;
+    background-position-x: 4px;
+}

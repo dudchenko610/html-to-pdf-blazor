@@ -1,0 +1,51 @@
+@page "/"
+@using BlazorComponentHeap.HtmlEditor
+@using BlazorComponentHeap.HtmlEditor.Components.Toolbar.Item
+
+<div class="page-container">
+    <div class="inner-container">
+        <div class="html-editor-container">
+            <div class="editor">
+                <HtmlEditor @ref="_htmlEditor"
+                            ToolbarKeys="_toolbarKeys"
+                            OnChange="OnChangeInEditorAsync"
+                            ViewModeChanged="OnViewModeChangedAsync"
+                            OnLoaded="OnEditorLoadedAsync"
+                            OnReplaceImageClicked="OnReplaceImageClickedAsync"
+                            OnSelectImage="OnSelectImageAsync"
+                            ImageReplacingEnabled="true">
+                    <ToolbarItemsTemplate>
+
+                        <ToolbarItemComponent Key="save-to-pdf">
+                            <div class="save-img-wrapper">
+                                <img class="save-img"
+                                     src="svg/save-to-pdf.svg"/>
+                            </div>
+                        </ToolbarItemComponent>
+
+                        <ToolbarItemComponent Key="doc-template">
+                            <div class="doc-template-wrapper">
+                                
+                                Select
+                                @* <SelectComponent @ref="_templateSelectRef" *@
+                                @*                  Height="400" *@
+                                @*                  DefaultText="Select template" *@
+                                @*                  AlignLeft="@AppModeService.IsEmbedded" *@
+                                @*                  TItem="DocumentTemplateModel" *@
+                                @*                  Options="@_docTemplates" *@
+                                @*                  ScrollToSelected="true" *@
+                                @*                  ElementNamePredicate="x => x.Name" *@
+                                @*                  GroupPredicate="x => x.DocumentGroupId" *@
+                                @*                  GroupNamePredicate="x => x.DocumentGroupName" *@
+                                @*                  SelectedChanged="OnSelectTemplateAsync"/> *@
+                            </div>
+                        </ToolbarItemComponent>
+                    </ToolbarItemsTemplate>
+                </HtmlEditor>
+            </div>
+            <div class="form">
+                <button>Do something</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div id="@_containerId"
+     class="link-insert-wrapper"
+     tabindex="-1">
+    <div class="icon @(IsImage ? "image" : "link")" @onclick="OnIconClicked"></div>
+    <div class="link-content @(_hidden ? "hidden" : "")">
+        <div class="input-wrapper">
+            <input id="@_inputId"
+                   placeholder="Type Link"
+                   @ref="_inputRef"
+                   @bind-value="@_value"
+                   @bind-value:event="oninput" />
+        </div>
+
+        <div class="btn" @onclick="OnOkayClickedAsync">Insert</div>
+    </div>
+</div>

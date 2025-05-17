@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Html To Pdf</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="HtmlToPdf.WebWasm.styles.css" rel="stylesheet" />
+
+    <!--CodeMirror-->
+    <link href="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/codemirror.css" rel="stylesheet" />
+    <link href="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/theme/material.css" rel="stylesheet" />
+    <link href="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/show-hint.min.css" rel="stylesheet" />
+    <link href="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/foldgutter.min.css" rel="stylesheet" />
+    <link href="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/dialog/dialog.css" rel="stylesheet" />
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/codemirror.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/mode/xml/xml.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/mode/css/css.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/mode/javascript/javascript.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/mode/htmlmixed/htmlmixed.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/show-hint.min.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/anyword-hint.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/css-hint.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/html-hint.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/xml-hint.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/hint/javascript-hint.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/edit/closetag.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/edit/closebrackets.min.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/dialog/dialog.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/search/search.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/search/searchcursor.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/search/jump-to-line.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/mode/markdown/markdown.min.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/brace-fold.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/comment-fold.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/foldcode.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/foldgutter.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/markdown-fold.min.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/libs/codemirror/5.65.3/addon/fold/xml-fold.min.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/js/code-mirror-autorefresh.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/js/code-mirror-formatting.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/js/code-mirror-min-lines.js"></script>
+    <!--CodeMirror-->
+    
+    <script src="_content/BlazorComponentHeap.Core/js/bch-common.js"></script>
+
+    <script src="_content/BlazorComponentHeap.HtmlEditor/js/editor-helpers.js"></script>
+    <script src="_content/BlazorComponentHeap.HtmlEditor/js/html-editor.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/BlazorComponentHeap.Core/js/bch-event-handlers.js"></script>
+
+</body>
+
+</html>

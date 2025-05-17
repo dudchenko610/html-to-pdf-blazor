@@ -1,0 +1,113 @@
+@using BlazorComponentHeap.Modal
+@typeparam TItem
+
+<div id="@_containerId"
+     class="@("bch-select-container bch-no-selectable-text " + $"{(IsOpened ? "show" : "")} " + $"{(_selectedValue != null! ? "has-selected" : "")} " + $"{(UpperSide ? "bch-upper-side" : "")} " + $"{CssClass}")"
+     style="@($"width: {Width}px; height: {Height}px;")"
+     tabindex="-1">
+
+    <div class="bch-button bch-no-selectable-text"
+         @onclick="OnSelectClickedAsync">
+
+        @if (Filtering)
+        {
+            <div class="search-icon bch-no-selectable-text @(IsOpened ? "opened" : "")"></div>
+        }
+
+        <input id="@_inputId"
+               class="@(!Filtering ? "removed" : "")"
+               @ref="@_inputRef"
+               @bind-value="@Filter"
+               @bind-value:event="oninput"
+               @onkeydown="OnInputKeyDownAsync"
+               placeholder="@_placeholder"
+               type='text'
+               autocomplete="unrechable-filter-to-autocomplete"/>
+
+
+        @if (!Filtering)
+        {
+            <label class="bch-no-selectable-text">@_placeholder</label>
+        }
+
+        <span></span>
+    </div>
+
+</div>
+
+<BCHModal
+    CssClass="@($"bch-select-content-modal-wrapper {CssClass} {_contentClass}" + (UpperSide ? "bch-upper-side" : ""))"
+    Width="@($"{_contentWidth.ToString(_nF)}px")"
+    Height="unset"
+    X="@($"{_containerPos.X.ToString(_nF)}px")"
+    Y="@(UpperSide ? $"{(_containerPos.Y - (ContentHeight < GetContentHeight() ? ContentHeight : GetContentHeight())).ToString(_nF)}px" : $"{_containerPos.Y.ToString(_nF)}px")"
+    @bind-Show="IsOpened">
+
+    <div id="@ContentId"
+         class="bch-content @(UpperSide ? "bch-upper-side" : "") bch-no-selectable-text"
+         style="@($"max-height: {ContentHeight}px; width: {Width}px;")">
+        <div id="@ScrollerId" class="bch-scroller bch-no-selectable-text">
+
+            @foreach (var group in _groups)
+            {
+                <div @key="@group"
+                     class="@($"bch-group bch-no-selectable-text " + $"{(group.Expanded ? "expanded" : "")} ")"
+                     style="@($"max-height: {(group.Expanded ? (ItemHeight * (group.Elements.Count + 1)) : ItemHeight)}px")">
+
+                    @if (GroupPredicate is not null)
+                    {
+                        <div class="bch-group-wrapper bch-no-selectable-text"
+                             style="@($"height: {ItemHeight}px;")"
+                             @onclick="() => { OnGroupClicked(group); }">
+
+                            @if (GroupTemplate != null!)
+                            {
+                                @GroupTemplate(group.Key)
+                            }
+                            else
+                            {
+                                <div class="name bch-no-selectable-text">@group.Name</div>
+                                <span></span>
+                            }
+                        </div>
+                    }
+
+                    @foreach (var element in group.Elements)
+                    {
+                        <div @key="element"
+                             style="@($"height: {ItemHeight}px;")"
+                             class="@($"bch-option bch-no-selectable-text " + $"{(IsSelected(element.Item) ? "selected" : "")} " + $"{CssItemPredicate.Invoke(element.Item)}")"
+                             @onclick='async () => { await OnOptionClickedAsync(element.Item); }'>
+                            @if (OptionTemplate == null)
+                            {
+                                @element.Name
+                            }
+                            else
+                            {
+                                @OptionTemplate(element.Item)
+                            }
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (_groups.Count == 0)
+            {
+                <div class="@("bch-group expanded")"
+                     style="@($"max-height: {ItemHeight}px;")">
+                    <div style="@($"height: {ItemHeight}px;")"
+                         class="@($"bch-option empty bch-no-selectable-text ")">
+                        @NoItemsText
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</BCHModal>
+
+<style>
+    .@(_contentClass).bch-select-content-modal-wrapper:not(.bch-upper-side) {
+        transform: translateY(@(Height)px);
+    }
+</style>

@@ -1,0 +1,54 @@
+@{
+    var isCentral = IsCenter();
+}
+
+@if (ModalModel.Overlay)
+{
+    <div id="@ModalModel.OverlayId" class="bch-modal-overlay @ModalModel.CssClass" @onclick="OnOverlayClicked">
+        <div @onclick:stopPropagation
+             id="@ModalModel.Id"
+             class="bch-modal-content-container @ModalModel.CssClass"
+             style="@($"width: {ModalModel.Width}; height: {ModalModel.Height}; " + $"position: {(isCentral ? "static" : "absolute")}; left: {ModalModel.X}; top: {ModalModel.Y}; {ModalModel.CssStyles}")">
+            @ModalModel.Fragment
+        </div>
+    </div>
+}
+else
+{
+    <div @onclick:stopPropagation
+         id="@ModalModel.Id"
+         class="@($"bch-modal-content-container bch-no-layer {(isCentral ? "bch-central" : "")} {ModalModel.CssClass}")"
+         style="@($"width: {ModalModel.Width}; height: {ModalModel.Height}; z-index: {ModalModel.ZIndex}; " + $"{(!isCentral ? $"left: {ModalModel.X}; top: {ModalModel.Y};" : "")} {ModalModel.CssStyles}")">
+        @ModalModel.Fragment
+    </div>
+}
+
+<style>
+    .bch-modal-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        background: #00000060;
+        z-index: 999999;
+    }
+
+    .bch-modal-content-container {
+        display: flex;
+    }
+                
+    .bch-modal-content-container.bch-no-layer {
+        position: absolute;
+    }
+    
+    .bch-modal-content-container.bch-no-layer.bch-central {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
