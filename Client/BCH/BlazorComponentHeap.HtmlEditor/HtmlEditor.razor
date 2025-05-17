@@ -35,7 +35,7 @@
         @if (_showImageRect)
         {
             <div class="image-border"
-                 style="@($"left: {_imageRectPos.X.ToString(_nF)}px; top: {_imageRectPos.Y.ToString(_nF)}px;" + $"width: {(_imageRectSize.X / ScaleFactor).ToString(_nF)}px; height: {(_imageRectSize.Y / ScaleFactor).ToString(_nF)}px;")">
+                 style="@($"left: {_imageRectPos.X.ToString(_nF)}px; top: {_imageRectPos.Y.ToString(_nF)}px;" + $"width: {_imageRectSize.X.ToString(_nF)}px; height: {_imageRectSize.Y.ToString(_nF)}px;")">
                 @*             <div class="corner c-1"></div>
             <div class="corner c-2"></div>*@
                 <div @onmousedown="OnMouseDownAsync"

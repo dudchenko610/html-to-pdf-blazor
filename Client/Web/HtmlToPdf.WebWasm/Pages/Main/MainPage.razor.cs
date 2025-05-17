@@ -9,15 +9,12 @@ public partial class MainPage
 
     private readonly List<ToolbarItemModel> _toolbarKeys = new()
     {
-        new ToolbarItemModel { Key = "save-to-pdf", Hint = "Save To Pdf" },
-
-        new ToolbarItemModel { Key = nameof(ControlButton.Separator).ToLower() },
-        new ToolbarItemModel { Key = nameof(ControlButton.Undo).ToLower(), Hint = "Undo" },
-        new ToolbarItemModel { Key = nameof(ControlButton.Redo).ToLower(), Hint = "Redo" },
-        new ToolbarItemModel { Key = nameof(ControlButton.Separator).ToLower() },
         new ToolbarItemModel { Key = nameof(ControlButton.Bold).ToLower(), Hint = "Bold" },
         new ToolbarItemModel { Key = nameof(ControlButton.Italic).ToLower(), Hint = "Italic" },
         new ToolbarItemModel { Key = nameof(ControlButton.Underline).ToLower(), Hint = "Underline" },
+        new ToolbarItemModel { Key = nameof(ControlButton.Separator).ToLower() },
+        new ToolbarItemModel { Key = nameof(ControlButton.Undo).ToLower(), Hint = "Undo" },
+        new ToolbarItemModel { Key = nameof(ControlButton.Redo).ToLower(), Hint = "Redo" },
         new ToolbarItemModel { Key = nameof(ControlButton.Separator).ToLower() },
         new ToolbarItemModel { Key = nameof(ControlButton.FontSize).ToLower(), Hint = "Font Size" },
         new ToolbarItemModel { Key = "headings", Hint = "Headings" },

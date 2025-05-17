@@ -89,7 +89,7 @@ public partial class HtmlEditor
         {
             _showImageRect = true;
             _imageRectPos.Set(evt.Rect.X, evt.Rect.Y);
-            _imageRectSize.Set(evt.Rect.Width * ScaleFactor, evt.Rect.Height * ScaleFactor);
+            _imageRectSize.Set(evt.Rect.Width, evt.Rect.Height);
             _imageRectSizeBeforeDragging.Set(_imageRectSize);
             _imageRatio = evt.Rect.Width / evt.Rect.Height;
             OnSelectImage.InvokeAsync();

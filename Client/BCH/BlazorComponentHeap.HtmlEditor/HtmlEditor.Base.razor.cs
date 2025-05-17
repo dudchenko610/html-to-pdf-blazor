@@ -74,7 +74,6 @@ public partial class HtmlEditor : IAsyncDisposable
     private bool _KCPressed = false;
 
     private IJSInProcessRuntime _jsInProcessRuntime = null!;
-    private const float ScaleFactor = 0.9f;
 
     private string _colorText = string.Empty;
     private string _paragraph = string.Empty;
@@ -297,7 +296,7 @@ public partial class HtmlEditor : IAsyncDisposable
         await JsUtilsService.AddDocumentListenerAsync<object>("mouseup", _key, OnDocumentMouseUpAsync);
         await JsUtilsService.AddDocumentListenerAsync<MouseEventArgs>("mousemove", _key, OnMouseMoveAsync);
 
-        _lastMousePosition.Set(e.PageX / ScaleFactor, e.PageY / ScaleFactor);
+        _lastMousePosition.Set(e.PageX, e.PageY);
         _rectHandleDragged = true;
 
         _showFloatingToolbar = false;
@@ -326,8 +325,8 @@ public partial class HtmlEditor : IAsyncDisposable
         var dX = e.PageX - _lastMousePosition.X;
         var dY = e.PageY - _lastMousePosition.Y;
 
-        var newX = (_imageRectSizeBeforeDragging.X + dX * ScaleFactor);
-        var newY = (_imageRectSizeBeforeDragging.Y + dY * ScaleFactor);
+        var newX = _imageRectSizeBeforeDragging.X + dX;
+        var newY = _imageRectSizeBeforeDragging.Y + dY;
 
         var w = newX < _minRectangleWidth ? _minRectangleWidth : newX;
         var h = newY < _minRectangleHeight ? _minRectangleHeight : newY;
@@ -335,7 +334,7 @@ public partial class HtmlEditor : IAsyncDisposable
         h = w / (float)_imageRatio;
 
         _imageRectSize.Set(w, h);
-        await JsRuntime.InvokeVoidAsync("applyEditorImageChange", _previewId, w / ScaleFactor, h / ScaleFactor);
+        await JsRuntime.InvokeVoidAsync("applyEditorImageChange", _previewId, w, h);
     }
 
     [JSInvokable]
