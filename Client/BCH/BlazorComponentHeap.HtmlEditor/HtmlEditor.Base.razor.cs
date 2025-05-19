@@ -224,7 +224,7 @@ public partial class HtmlEditor : IAsyncDisposable
         await SwitchViewModeAsync();
     }
 
-    public async Task ExecCommandAsync(ControlButton button, string value = null!)
+    public async Task ExecCommandAsync(ControlButton button, string? value = null)
     {
         var command = button.GetValue<string, DocumentCommandAttribute>(x => x.Command);
         var undoRedoState = await JsRuntime.InvokeAsync<UndoRedoStateModel>("execCommandOnEditorWithSelection", _previewId, command, value);

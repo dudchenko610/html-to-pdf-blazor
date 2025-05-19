@@ -14,4 +14,14 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.2"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu4mxK.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu4WxKOzY.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu5mxKOzY.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu72xKOzY.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu7GxKOzY.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu7mxKOzY.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\bch-fonts\Roboto\KFOmCnqEu92Fr1Mu7WxKOzY.woff2" />
+    </ItemGroup>
+
 </Project>

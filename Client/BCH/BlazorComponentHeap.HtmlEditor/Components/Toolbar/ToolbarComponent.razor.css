@@ -1,5 +1,9 @@
 .html-text-editor-toolbar {
-    width: 100%;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    background: white;
+    margin-inline: 10px;
+    border-radius: 10px;
     padding-top: 4px;
     padding-bottom: 4px;
     border-bottom: 1px solid #E8EAED;
@@ -23,7 +27,7 @@
 
 .html-text-editor-toolbar > .control-item > .hint {
     position: absolute;
-    bottom: -18px;
+    top: -18px;
     left: 0;
     background: white;
     border-radius: 2px;
@@ -46,8 +50,7 @@
     background-color: #F0F2F4 !important;
 }
 
-.html-text-editor-toolbar > .control-item.active,
-.html-text-editor-toolbar > .control-item:active {
+.html-text-editor-toolbar > .control-item.active {
     background-color: #E5EFFF !important;
 }
 
@@ -123,7 +126,7 @@
 
 .html-text-editor-toolbar > .control-item.color-picker-container,
 .html-text-editor-toolbar > .control-item.align-container {
-    width: 50px;
+    width: 100px;
 }
 
 .html-text-editor-toolbar > .control-item.font-size-container,
@@ -148,12 +151,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.html-text-editor-toolbar > .control-item.align-container > .control-cnt .header-icon,
-.html-text-editor-toolbar > .control-item.align-container > .control-cnt .action-cnt {
-    width: 30px;
-    height: 100%;
 }
 
 .html-text-editor-toolbar > .control-item.color-picker-container > .control-cnt .arrow-container,
@@ -231,4 +228,9 @@
 .html-text-editor-toolbar > .control-item.table-container > .control-cnt .table-item:hover {
     border: 1px solid #0d6efd;
     background: #e7f1ff;
+}
+
+.align-action-cnt {
+    width: 30px;
+    height: 30px;
 }

@@ -6,6 +6,22 @@ public static class EditorConstants
         <html>
 	        <head>
                 <meta charset='utf-8' />
+                <style>
+                    p, h1, h2, h3, h4, h5, h6, pre, code, label {
+                        margin: 0;
+                    }
+                    
+                    html {
+                        min-height: 100%;
+                    }
+                    
+                    body {
+                        position: absolute;
+                        min-height: 100%;
+                        height: 100%;
+                        width: 100%;
+                    }
+                </style>
             </head>
 	        <body ></body>
         </html>
@@ -19,7 +35,7 @@ public static class EditorConstants
         "justify"
     };
     
-    public static readonly List<string> Paragraphs = new List<string>
+    public static readonly List<string> Headings = new List<string>
     {
         "Paragraph",
         "Code",

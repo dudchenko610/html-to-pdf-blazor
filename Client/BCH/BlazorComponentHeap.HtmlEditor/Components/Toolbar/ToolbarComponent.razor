@@ -67,10 +67,13 @@
                         <BCHSelect TItem="string"
                                    ContentHeight="200"
                                    ItemHeight="30"
+                                   Height="40"
+                                   Width="120"
                                    Options="@EditorConstants.FontSizes"
-                                   DefaultValue="@(EditorConstants.FontSizes[0])"
+                                   DefaultText="Font Size"
                                    Filtering="false"
                                    FilterByPredicate="x => x"
+                                   Selected="@null"
                                    SelectedChanged="OnFontSizeSelectedAsync"/>
                     </div>
                 </div>
@@ -85,10 +88,13 @@
                         <BCHSelect TItem="string"
                                    ContentHeight="200"
                                    ItemHeight="30"
-                                   Options="@EditorConstants.Paragraphs"
-                                   DefaultValue="@(EditorConstants.Paragraphs[0])"
+                                   Height="40"
+                                   Width="120"
+                                   Options="@EditorConstants.Headings"
+                                   DefaultText="Headings"
                                    Filtering="false"
                                    FilterByPredicate="x => x"
+                                   Selected="@null"
                                    SelectedChanged="OnParagraphSelectedAsync"/>
                     </div>
                 </div>
@@ -103,13 +109,16 @@
                         <BCHSelect TItem="string"
                                    ContentHeight="200"
                                    ItemHeight="30"
+                                   Height="40"
+                                   Width="100"
                                    Options="@EditorConstants.AlignCommands"
-                                   DefaultValue="@(EditorConstants.AlignCommands[0])"
+                                   DefaultText="Align"
                                    Filtering="false"
                                    FilterByPredicate="x => x"
+                                   Selected="@null"
                                    SelectedChanged="OnAlignTextSelectedAsync">
                             <OptionTemplate Context="action">
-                                <div class="action-cnt"
+                                <div class="align-action-cnt"
                                      style="@($"background: url(_content/BlazorComponentHeap.HtmlEditor/imgs/toolbar/align-text/{action}.svg) center no-repeat;")">
                                 </div>
                             </OptionTemplate>
@@ -127,6 +136,7 @@
                         <BCHSelect TItem="string"
                                    ContentHeight="200"
                                    ItemHeight="27"
+                                   Height="40"
                                    Options="@EditorConstants.Colors"
                                    Filtering="false"
                                    FilterByPredicate="x => x"
@@ -148,6 +158,7 @@
                         <BCHSelect TItem="string"
                                    ContentHeight="200"
                                    ItemHeight="23"
+                                   Height="40"
                                    Options="@EditorConstants.Colors"
                                    Filtering="false"
                                    FilterByPredicate="x => x"

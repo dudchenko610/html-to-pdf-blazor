@@ -48,7 +48,7 @@
     border: none;
     outline: none;
     padding: 0;
-    font-family: 'Roboto';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -70,7 +70,7 @@
 
 .bch-select-container > .bch-button > label {
     padding: 0;
-    font-family: 'Roboto';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -173,11 +173,11 @@
     display: flex;
     align-items: center;
 
-    font-family: 'Roboto';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 19px;
     color: #555555;
 }
 
@@ -243,12 +243,11 @@
     padding-left: 17px;
     white-space: nowrap;
     text-align: left;
-    color: blue;
     height: 100%;
     display: flex;
     align-items: center;
 
-    font-family: 'Roboto';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

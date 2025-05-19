@@ -2,7 +2,7 @@
 
 const iframeGlobalListeners = {};
 
-function addIFrameDocumentListener(iframeId, key, eventName, dotnetReference, methodName) {
+async function addIFrameDocumentListener(iframeId, key, eventName, dotnetReference, methodName) {
     const iframeElement = document.getElementById(iframeId);
     const iframeDocument = iframeElement.contentDocument || iframeElement.contentWindow.document;
     const iframeWindow = iframeElement.contentWindow;

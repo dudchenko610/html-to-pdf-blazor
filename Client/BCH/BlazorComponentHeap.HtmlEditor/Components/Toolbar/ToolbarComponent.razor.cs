@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using BlazorComponentHeap.Core.Extensions;
 using BlazorComponentHeap.HtmlEditor.Attributes;
 using BlazorComponentHeap.HtmlEditor.Models;
+using BlazorComponentHeap.Select;
 
 namespace BlazorComponentHeap.HtmlEditor.Components.Toolbar;
 
@@ -32,6 +33,9 @@ public partial class ToolbarComponent
 
     private Task OnParagraphSelectedAsync(string? text)
     {
+        StateHasChanged();
+        if (string.IsNullOrEmpty(text)) return Task.CompletedTask;
+        
         var parameters = text switch
         {
             "H1" => "<h1>",
@@ -50,7 +54,8 @@ public partial class ToolbarComponent
 
     private Task OnFontSizeSelectedAsync(string? fontSize)
     {
-        return OnButtonClick.InvokeAsync((ControlButton.FontSize, fontSize));
+        StateHasChanged();
+        return string.IsNullOrEmpty(fontSize) ? Task.CompletedTask : OnButtonClick.InvokeAsync((ControlButton.FontSize, fontSize));
     }
 
     private async Task OnTableSelectedAsync(string? text)
@@ -128,6 +133,9 @@ public partial class ToolbarComponent
 
     private async Task OnAlignTextSelectedAsync(string? text)
     {
+        StateHasChanged();
+        if (string.IsNullOrEmpty(text)) return;
+        
         var control = text switch
         {
             "left" => ControlButton.JustifyLeft,

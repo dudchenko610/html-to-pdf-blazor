@@ -8,6 +8,12 @@ if (!Event.prototype.hasOwnProperty('path')) {
     });
 }
 
+if (!Event.prototype.hasOwnProperty('path')) {
+    Object.defineProperty(Event.prototype, 'path', {
+        get() { return this.composedPath(); }
+    });
+}
+
 // for Safari and Firefox
 if (!("path" in MouseEvent.prototype)) {
     Object.defineProperty(MouseEvent.prototype, "path", {
@@ -32,7 +38,7 @@ function getPathCoordinates(event) {
     const pageX = event.pageX | 0;
     const pageY = event.pageY | 0;
 
-    const pathCoordinates = event.path.map(element => {
+    const pathCoordinates = event.composedPath().map(element => {
         if (element.getBoundingClientRect) {
             const viewportOffset = element.getBoundingClientRect();
 

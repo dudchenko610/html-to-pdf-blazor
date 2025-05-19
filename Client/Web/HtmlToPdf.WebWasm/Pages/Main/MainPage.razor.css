@@ -23,8 +23,6 @@
 .page-container > .inner-container > .html-editor-container {
     width: 100%;
     height: 100%;
-    padding-block: 15px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -39,14 +37,12 @@
     flex-grow: 1;
 
     border: 1px solid #E8E8E8;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 10px;
 }
 
 .page-container > .inner-container > .html-editor-container > .form {
     width: 100%;
     display: flex;
-    flex-direction: column;
     gap: 10px;
     padding-inline: 15px;
 }
@@ -56,9 +52,10 @@
 }
 
 button {
+    flex-grow: 1;
     background: #5DB276;
     border-radius: 6px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

@@ -10,10 +10,14 @@ p, ul, ol, dl, dt, dd {
     margin: 0;
 }
 
+*:focus-visible {
+    outline: none;
+}
+
 html, body {
     height: 100%;
     overflow: hidden;
-    font-family: 'Product Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #app {

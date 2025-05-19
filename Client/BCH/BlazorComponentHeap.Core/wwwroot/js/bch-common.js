@@ -10,6 +10,28 @@
 //     });
 // }, true);
 
+//array
+if (!Array.prototype.last) {
+    Array.prototype.last = function () {
+        return this[this.length - 1];
+    };
+}
+
+// string.format
+if (!String.prototype.format) {
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function (match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 function bchGetBoundingClientRectById(id, param) {
 
     const element = document.getElementById(id);

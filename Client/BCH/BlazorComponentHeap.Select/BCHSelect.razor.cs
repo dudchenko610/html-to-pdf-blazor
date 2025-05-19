@@ -59,6 +59,8 @@ public partial class BCHSelect<TItem> : ComponentBase, IAsyncDisposable
                 return;
             _selectedValue = value;
 
+            _placeholder = _selectedValue is null ? DefaultText : OptionNamePredicate?.Invoke(_selectedValue) ?? string.Empty;
+
             SelectedChanged.InvokeAsync(value);
         }
     }
@@ -122,7 +124,7 @@ public partial class BCHSelect<TItem> : ComponentBase, IAsyncDisposable
             Selected = DefaultValue;
 
         //var isClass = default(TItem) == null; // Only true if T is a reference type or nullable value type
-        _placeholder = (Selected == null) ? DefaultText : OptionNamePredicate.Invoke(Selected);
+        _placeholder = Selected is null ? DefaultText : OptionNamePredicate.Invoke(Selected);
         
         StateHasChanged();
     }
@@ -202,9 +204,9 @@ public partial class BCHSelect<TItem> : ComponentBase, IAsyncDisposable
             Selected = option;
             Filter = string.Empty;
 
-            if (Selected != null!)
+            if (Selected is not null)
             {
-                _placeholder = OptionNamePredicate.Invoke(Selected);
+                _placeholder = OptionNamePredicate?.Invoke(Selected) ?? string.Empty;
             }
         }
         else
@@ -241,6 +243,8 @@ public partial class BCHSelect<TItem> : ComponentBase, IAsyncDisposable
         if (!IsOpened)
         {
             var containerRect = await JsUtilsService.GetBoundingClientRectAsync(_containerId);
+            if (containerRect is null) return;
+            
             _containerPos.Set(containerRect.X, containerRect.Y);
             _contentWidth = (float) containerRect.Width;
         }
